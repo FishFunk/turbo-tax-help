@@ -41,7 +41,7 @@ def search():
     }
 
     headers = {
-        'Authorization': 'Intuit_APIKey intuit_apikey=prdakyres2BEwmOvDMtoKGiMruAOBfRhCZq0GAap, intuit_apikey_version=1.0',
+        'Authorization': 'Intuit_APIKey intuit_apikey=prdakyres2BEwmOvDMtoKGiMruAOBfRhCZq0GAap, intuit_apikey_version=1.0'
     }
 
     params = (

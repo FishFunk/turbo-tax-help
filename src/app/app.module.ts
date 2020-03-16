@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SidebarModule } from 'ng-sidebar';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -9,7 +11,9 @@ import { SidebarModule } from 'ng-sidebar';
   ],
   imports: [
     BrowserModule,
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

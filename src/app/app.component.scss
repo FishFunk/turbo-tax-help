@@ -1,14 +1,19 @@
 ng-sidebar-container{
   height: 100vh;
+  max-height: 100vh;
 }
 
 #sidebar-content{
   height: 95vh;
-  max-width: 385px;
+  width: 385px;
 }
 
 #search-input{
   max-width: 345px;
+}
+
+.list-group-item {
+  max-height: 300px;
 }
 
 :host {
@@ -35,5 +40,14 @@ ng-sidebar-container{
 
   .spacer {
     flex: 1;
+  }
+
+.teal {
+  color: #037c8f;
+}
+
+.btn-teal{
+    background-color: #037c8f;
+    color: white;
   }
   

@@ -1,5 +1,4 @@
 <ng-sidebar-container>
- 
   <!-- Popout drawer sidebar -->
   <ng-sidebar [(opened)]="_opened" position="right">
     <div id="sidebar-content">
@@ -13,9 +12,11 @@
           <div class="row p-2">
             <div class="col col-12 form-group">
               <div class="input-group">
-                <input id="search-input" type="text" class="form-control" placeholder="Search TurboTax">
+                <input id="search-input" #ctrl="ngModel" 
+                  type="text" class="form-control" placeholder="Search TurboTax" [(ngModel)]="searchInput"
+                  (keyup.enter)="onSearchSubmit()">
                 <div class="input-group-append">
-                  <button class="btn btn-light" type="submit">
+                  <button class="btn btn-light" type="submit" (click)="onSearchSubmit()">
                     <i class="fa fa-search"></i>
                   </button>
                 </div>
@@ -23,72 +24,52 @@
             </div>
           </div>
         </div>
-
-      <div class="list-group">
+      
+      <!-- Search Results -->
+      <div *ngIf="searchData | async as data; else loading" class="list-group">
         <div class="list-group-item">
           <h5 class="mb-1">People like you found these answers helpful</h5>
         </div>
-        <a href="#" class="list-group-item list-group-item-action active">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">List group item heading</h5>
-            <small>3 days ago</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          <small>Donec id elit non mi porta.</small>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">List group item heading</h5>
-            <small class="text-muted">3 days ago</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          <small class="text-muted">Donec id elit non mi porta.</small>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">List group item heading</h5>
-            <small class="text-muted">3 days ago</small>
-          </div>
-          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-          <small class="text-muted">Donec id elit non mi porta.</small>
-        </a>
-      </div>
-    </div>
-
-    <!-- Sidebar footer -->
-    <footer class="footer bg-light mt-0">
-      <div class="container pb-2 pt-2">
-        <div class="row">
-          <!-- empty columns for spacing -->
-          <div class="col"></div>
-          <div class="col"></div>
-          <div class="col">
-            <button type="button" class="btn btn-primary">CTA Section</button>
-          </div>
+        <div *ngFor="let result of data.results">
+          <a class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1 teal">{{result.title}}</h6>
+              </div>
+              <p class="mb-1">{{result.snippet}}</p>
+          </a>
         </div>
       </div>
-    </footer>
+      
+      <!-- Sidebar Footer -->
+      <footer *ngIf="searchData | async" class="footer bg-light mt-0">
+        <div class="container pb-2 pt-2">
+          <div class="row">
+            <!-- empty columns for spacing -->
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col">
+              <button type="button" class="btn btn-teal">CTA Section</button>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   </ng-sidebar>
 
   <!-- Page content -->
   <div ng-sidebar-content>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container-fluid">
-          <div class="navbar-collapse collapse flex-grow-1 order-1 order-md-0 collapsenav">
-            <a class="navbar-brand" href="#">INTUIT</a>
-          </div>
-          <div class="d-flex flex-md-fill flex-shrink-1 d-md-none">
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".collapsenav">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
+          <div class="flex-grow-1 order-1 order-md-0">
+            <a class="navbar-brand teal" href="#">INTUIT</a>
           </div>
           <div class="d-flex flex-md-fill flex-shrink-1 justify-content-end order-3">
-              <form class="d-flex flex-nowrap align-items-center">
-                  <button class="btn btn-outline-secondary" type="submit" (click)="toggleSidebar()">HELP</button>
-              </form>
+            <button class="btn btn-outline-secondary" (click)="toggleSidebar()">HELP</button>
           </div>
       </div>
     </nav>
   </div>
 
 </ng-sidebar-container>
+
+<ng-template #loading>Loading...</ng-template>
