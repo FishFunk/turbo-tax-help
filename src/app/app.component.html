@@ -6,14 +6,13 @@
           <div class="row p-2">
             <div class="col col-10"></div>
             <div class="col-2">
-              <button closeSidebar class="btn btn-outline-light btn-sm"><i class="fa fa-times"></i></button>
+              <a closeSidebar id="close-sidebar-icon"><i class="fa fa-times"></i></a>
             </div>
           </div>
           <div class="row p-2">
             <div class="col col-12 form-group">
               <div class="input-group">
-                <input id="search-input" #ctrl="ngModel" 
-                  type="text" class="form-control" placeholder="Search TurboTax" [(ngModel)]="searchInput"
+                <input id="#search-input" type="text" class="form-control" placeholder="Search TurboTax" [(ngModel)]="searchInput"
                   (keyup.enter)="onSearchSubmit()">
                 <div class="input-group-append">
                   <button class="btn btn-light" type="submit" (click)="onSearchSubmit()">

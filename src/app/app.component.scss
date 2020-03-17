@@ -8,12 +8,34 @@ ng-sidebar-container{
   width: 385px;
 }
 
-#search-input{
+#search-input,
+#search-input:focus {
   max-width: 345px;
+}
+
+input:focus{
+  outline: none;
+  box-shadow: none;
+  border: none;
 }
 
 .list-group-item {
   max-height: 300px;
+}
+
+#close-sidebar-icon{
+  border: none;
+  outline: 0;
+}
+
+#close-sidebar-icon,
+#close-sidebar-icon:focus,
+#close-sidebar-icon:active,
+#close-sidebar:hover{
+  color: white;
+  background: transparent;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 
 :host {
