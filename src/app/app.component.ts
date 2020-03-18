@@ -11,7 +11,7 @@ import { share } from 'rxjs/operators';
 
 export class AppComponent {
   title = 'turbo-tax-help';
-  _opened: boolean = false;
+  sidebarOpen: boolean = false;
   searchData: Observable<any>;
   searchInput: string;
 
@@ -20,7 +20,7 @@ export class AppComponent {
   }
  
   toggleSidebar() {
-    this._opened = !this._opened;
+    this.sidebarOpen = !this.sidebarOpen;
     this.searchApi();
   }
 
