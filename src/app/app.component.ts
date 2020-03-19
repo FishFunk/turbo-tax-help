@@ -10,7 +10,6 @@ import { share } from 'rxjs/operators';
 })
 
 export class AppComponent {
-  title = 'turbo-tax-help';
   sidebarOpen: boolean = false;
   searchData: Observable<any>;
   searchInput: string;
